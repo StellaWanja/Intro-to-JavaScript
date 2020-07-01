@@ -464,6 +464,539 @@ myDog.bark = "bow-wow";
 myDog['bark'] = "woof!";
 
 //delete properties from an object
+var myCat = {
+    "name": "Camper",
+    "legs": 4,
+    "tails": 1,
+    "friends": ["everything!"]
+};
+
+delete myCat.name;
+
+//using objects for lookups
+function phoneticLookup(val){
+    var result = "";
+
+    var lookup = {
+        "alpha": "Adams",
+        "bravo": "Boston",
+        "charlie": "Chicago",
+        "delta": "Denver",
+        "echo": "Easy",
+        "free": "Frank"
+    };
+    result = lookup[val];
+
+    return result;
+}
+console.log(phoneticLookup("charlie"));
+
+//testing objects for properties
+var myObj = {
+    gift: "pony",
+    pet: "kitten",
+    bed: "sleigh"
+};
+
+function checkObj(checkProp) {
+    if (myObj.hasOwnProperty(checkProp)){
+        return myObj[checkProp];
+    }else{
+        return "Not Found";
+    }
+}
+console.log(checkObj("hello"));
+
+//manipulating complex objects
+var myMusic = [ //objects inside array
+    {
+        "artist": "Billy",
+        "title": "Piano Man",
+        "release_year": "1973",
+        "formats": [
+            "CD",
+            "DVD"
+        ],
+        "gold": true
+    }
+];
+
+//accessing nested objects
+var myStorage = {
+    "car": {
+        "inside": {
+            "glove box": "maps",
+            "passenger seat": "crumbs"
+        },
+        "outside": {
+            "trunk": "jack"
+        }
+    }
+};
+
+var gloveBoxContents = myStorage.car.inside["glove box"];
+
+console.log(gloveBoxContents)
+
+//accessing nested arrays
+var myPlants = [
+    {
+        type: "flowers",
+        list: [
+            "rose",
+            "tulips",
+            "dandelion"
+        ]
+    },
+    {
+        type: "trees",
+        list: [
+            "fir",
+            "pine",
+            "birch"
+        ]
+    }
+];
+
+var secondTree = myPlants[1].list[1];
+
+//record collection tutorial
+var collection = {
+    "2548": {
+        "album": "Slippery when wet",
+        "artist": "Bon Jovi",
+        "tracks": [
+            "Let it Rock",
+            "You give love a bad name"
+        ]
+    },
+    "2468": {
+        "album": "1999",
+        "artist": "Prince",
+        "tracks": [
+            "1999",
+            "Little Red Corvette"
+        ]
+    },
+    "1245": {
+        "artist": "Robert Palmer",
+        "tracks": []
+    },
+    "5439": {
+        "album": "ABBA Gold"
+    }
+};
+
+var collectionCopy = JSON.parse(JSON.stringify(collection)); //keep a collection copy for tests before data gets changed
+
+function updateRecords(id, prop, value) {
+    if (value === ""){
+        delete collection[id][prop]; //delete if empty
+    } else if (prop === "tracks"){
+        collection[id][prop] = collection[id][prop] || []; //if track exists, equal to itself. if track doesn't exist, equal to empty array
+        collection[id][prop].push(value);
+    }else {
+        collection[id][prop] = value;
+    }
+    return collection;
+}
+
+updateRecords(2468, "tracks", "test");
+console.log(updateRecords(1245,"tracks","Hello"));
+
+//iterate with while loops
+var myArray = [];
+
+var i = 0;
+while (i < 5){
+    myArray.push(i);
+    i++;
+}
+
+console.log(myArray);
+
+//iterate with for loops
+//for (initialization, condition, expression) {}
+var ouArray = [];
+
+for (var h=0; h<5; h++){
+    ouArray.push(h);
+}
+
+//iterate odd numbers with a for loop
+var forArray = [];
+
+for (var l = 1; l < 10; l+= 2){
+    forArray.push(l);
+}
+
+//count backward with a for loop
+var backArray = [];
+
+for (var g = 10; g < 0; g -= 2){
+    backArray.push(g);
+}
+
+//iterate through an array with a for loop
+var ourArr = [2,3,4,5,6];
+var ourTotal = 0;
+
+for (var sumArr = 0; sumArr < ourArr.length; sumArr++){
+    ourTotal += ourArr[sumArr];
+}
+
+console.log(ourTotal);
+
+//nesting for loops
+//use if you have nested arrays
+function multiplyAll(arr) {
+    var product = 1;
+
+    for (var i=0; i< arr.length; i++){
+        for (var j=0; j<arr[i].length; j++){
+            product *= arr[i][j];
+        }
+    }
+    return product;
+}
+
+var product = multiplyAll([[1,2],[3,4],[5,6,7]]);
+
+console.log(product); //5040 - will multiply every number, loop thru array[0] and multiply numbers, then move to array[1]...
+
+//iterate with do..while loop
+//do..while loop will run first then check the condition unlike the while loop
+var doArr = [];
+var i = 10;
+
+do{
+    doArr.push(i);
+    i++
+}while (i<5)
+
+console.log(i,doArr);
+
+//generate random fractions
+function randomFunction() {
+    return Math.random();
+}
+console.log(randomFunction()); //random decimal number
+
+//generate random whole numbers
+//math.floor rounds off to nearest whole number
+function randomWholeNum() {
+    return Math.floor(Math.random() * 10);
+}
+console.log(randomWholeNum());
+
+//generate random whole numbers within a range
+function ourRandomRange(ourMin, ourMax) {
+    return Math.floor(Math.random() * (ourMax - ourMin + 1)) + ourMin;
+}
+
+ourRandomRange(5, 15);
+
+//using the ParseInt Function //converts string to integer
+function convertToInt(str) {
+    return parseInt(str);
+}
+convertToInt("56");
+
+//use the ParseInt with a radix
+//radix specifies the basis of a number in a string eg base 10, base 2/binary
+function convertToBase(str) {
+    return parseInt(str, 2)
+}
+convertToBase("10011");
+
+//using the conditional (ternary) operator
+//condition ? statement-if-true : statement-if-false;
+function checkEqual(a,b) {
+    if (a === b){
+        return true;
+    } else {
+        return false;
+    }
+
+    //or
+
+    return a === b ? true : false;
+}
+checkEqual(1,2);
+
+//using the multiple conditional (ternary) operator
+function checkSign(num) {
+    return num > 0 ? "positive" : num < 0 ? "negative" : "zero"
+}
+checkSign(10);
+
+//difference between var and let
+//var - dclared globally or locally within a function
+//let - declared within the block of code or expression in which it was declared in
+//use let or const
+
+function catTalk() {
+    "use strict"; //enables strict mode to avoid mistakes and unsafe actions
+    //used at top pf a file or function
+}
+
+//declare a read-only variable with the const keyword
+//it's like let but cannot be reassigned, ie, read-only
+//use const if you do not want to reassign it
+//also used with a capital letter
+const SENTENCE = str + "cool";
+console.log(SENTENCE);
+
+//mutate an array declared with const
+const S = [5,7,2];
+
+function editInPlace() {
+    "use strict";
+
+    S[0] = 2;
+    S[1] = 5;
+    S[2] = 8
+}
+editInPlace();
+console.log(S);
+
+//prevent object mutation - use object.freeze
+function freezeObj() {
+    "use strict";
+    const MATH_CONSTANTS = {
+        PI: 3.14
+    };
+    Object.freeze(MATH_CONSTANTS);
+
+    try{
+        MATH_CONSTANTS.PI = 99;
+    }catch (ex) {
+        console.log(ex);
+    }
+    return MATH_CONSTANTS.PI;
+}
+const PI = freezeObj();
+
+//use arrow functions to write concise anonymous functions
+const MAGIC = () => new Date();
+
+//write arrow functions with parameters
+const myConcat = (arr1, arr2) => arr1.concat(arr2);
+console.log(myConcat([1,2],[3,4,5]));
+
+//write higher order arrow functions - map, filter, reduce
+//filter out non positive integers
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+const squareList = (arr) => {
+    const squaredIntegers = arr.filter(num => Number.isInteger(num) && num > 0).map(x => x*x);
+    return squaredIntegers;
+};
+
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers)
+
+
+const increment = (function(){
+    return function increment (number, value = 1){
+        return number + value;
+    };
+})();
+console.log(increment(5,2));
+console.log(increment(5));
+
+//use rest operator with function parameters (...) //will convert everything to an array
+const sum = (function () {
+    return function sum(...args) {
+        return args.reduce((a,b) => a+b, 0);
+    };
+})();
+console.log(sum(1,2,3,4));
+
+//use the spread operator  to evaluate arrays in place
+const arr1 = ['JAN', 'FEB', 'MARCH', 'APRIL'];
+let arr2;
+(function () {
+   arr2 = [...arr1];
+   arr1[0] = 'potato'
+})();
+console.log(arr2);
+
+//Use Destructuring Assignment to Assign Variables from Objects
+var voxel = {x : 3.6, y : 7.4, z : 6.54};
+var x = voxel.x;
+var y = voxel.y;
+var z = voxel.z
+//or
+const {x : d, y: e, z: f} = voxel; //a=3.6, b=7.4,c=6.54
+
+const AVG_TEMP = {today: 77.5, tomorrow: 79};
+
+function getTempOfTmrow(avgTemp) {
+    "use strict";
+    const {tomorrow : tempofTmrow} = avgTemp;
+    return tempofTmrow;
+}
+console.log(getTempOfTmrow(AVG_TEMP));
+
+//destructuring assignment with nested objects
+const LOCAL_FORECAST = {
+    today: {min: 72, max: 83} ,
+    tomorrow: {min: 73.3, max: 84.6}
+};
+
+function getMaxOfTmrow(forecast) {
+    "use strict";
+    const {tomorrow : {max : maxOfTmrow}} = forecast;
+    return maxOfTmrow;
+}
+console.log(getMaxOfTmrow(LOCAL_FORECAST));
+
+// Use Destructuring Assignment to Assign Variables from Arrays
+const [p, q, ,r] = [1,2,3,4,5,6];
+console.log(p,q,r);
+
+let u =8, t = 6;
+(() => {
+    "use strict";
+    [u,t] = [t,u]
+})();
+console.log(u);
+console.log(t);
+
+// Use Destructuring Assignment with rest operator
+const source = [1,2,3,4,5,6,7,8,9];
+function removeFirstTwo(list) {
+    const [ , , ...arr] = list;
+    return arr;
+}
+const arr = removeFirstTwo(source);
+console.log(arr);
+console.log(source);
+
+//Use Destructuring Assignment to Pass an Object as a Function's parameter
+//used mainly in API calls
+const stats = {
+    max: 56.78,
+    standard_dev : 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -8.75,
+    average: 35.85
+};
+const half = (function () {
+    return function half({max, min}) {
+        return (max + min) / 2.0;
+    };
+}) ();
+
+console.log(stats);
+console.log(half(stats));
+
+//create strings using template literals
+//made using backtick `
+//can be used to make multi-line strings
+//can easily add quotation marks
+//can put variables in the string
+const person = {
+    name: "Hans",
+    age: 26
+};
+const greeting = `Hello, my name is ${person.name}!
+                   I am ${person.age} years old;`
+console.log(greeting);
+
+//Write Concise Object Literal Declarations Using Simple Fields
+const createPerson  = (name, age, gender ) => ({name, age, gender});
+console.log(createPerson("Hans", 26, "male"));
+
+//write concise declarative functions
+const bicycle = {
+    gear: 2,
+    setGear(newGear){
+        "use strict";
+        this.gear = newGear;
+    }
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+
+//use class syntax to define a constructor function
+class SpaceShuttle{
+    constructor(targetPlanet) {
+        this.targetPlanet = targetPlanet;
+    }
+}
+var zeus = new SpaceShuttle('Jupiter');
+console.log(zeus.targetPlanet);
+
+//Use getters and setters to Control Access to an Object
+function makeClass() {
+    class ThermoStat {
+        constructor(temp) {
+            this._temp = 5/9 * (temp - 32);
+        }
+        get temperature(){
+            return this._temp;
+        }
+        set temperature(updatedTemp){
+            this._temp = updatedTemp;
+        }
+    }
+    return ThermoStat;
+}
+
+const Thermostat = makeClass();
+const thermos = new Thermostat(76);
+let temp = thermos.temperature;
+thermos.temperature = 26;
+temp = thermos.temperature;
+
+//import and export - variables and functions
+//import {function} from "./filename"
+//export {function};
+//export const foo = "bar"; - variable
+//to import everything, use *
+//import * as objectname from "filename";
+//export default - fallback export - export one thing from a file
+//export default function subtract(x,y) {return x- y };
+//import a default export
+//import subtract from "filename";
+//subtract(7,4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
