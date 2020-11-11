@@ -966,15 +966,80 @@ temp = thermos.temperature;
 //subtract(7,4);
 
 
+//ES6
+//old js
+var user = {
+    name: gret,
+    age: 25
+};
 
+var myname = user.name;
 
+//new js - object deconstruction
+const list = {
+    name: 'Shopping List',
+    items: ['milk', 'cheese']
+};
 
+const {name, items} = list; //get name and items from list
 
+//
+const shoppingList = ['Milk', 'Eggs', 'Bananas', 'Choco'];
 
+//foreach
+shoppingList.forEach((product,index) => {
+    console.log(`${product} ${index}`);
+});
 
+//or map
+const newList = shoppingList.map(item => {
+    return item;
+});
 
+//filter
+const filterList = shoppingList.filter(item => {
+    return item === 'Eggs';
+});
 
+//constructor function
+class shopList{
+    constructor(items, no) {
+        this.items = items;
+        this.no = no;
+    }
 
+    //add function
+    sayList (){
+        console.log(this.items);
+    }
+}
+
+const myList = new shopList(['Milk, Choco'], 2);
+
+class Product extends shopList {
+    constructor(items, no, amount, cost) {
+        super(items, no);
+        this.amount = amount;
+        this.cost = cost;
+    }
+}
+
+const prod = new Product(['Eggs'],1, 12, 50);
+
+//promises - replaced callback
+const prom = new Promise((resolve, reject) => {
+   //async
+   setTimeout(() => {
+       resolve({user: 'name', id: '1234'});
+   },2000);
+});
+
+prom.then(data => {
+    console.log(data);
+});
+
+//if then doesmt run. use catch
+prom.catch(err => console.log(err));
 
 
 
