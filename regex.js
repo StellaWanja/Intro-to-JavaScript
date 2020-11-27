@@ -91,4 +91,55 @@ soccerWord.match(goRegex); // Returns ["goooooooo"]
 gPhrase.match(goRegex); // Returns ["g"]
 oPhrase.match(goRegex); // Returns null
 
-//14. Regular Expressions: Find Characters with Lazy Matching
+//14. Regular Expressions: Find Characters with Lazy Matching (?)
+//a greedy match finds the longest possible part of a string that fits the regex pattern and returns it as a match.
+//a lazy match, which finds the smallest possible part of the string that satisfies the regex pattern.
+//However, you can use the ? character to change it to lazy matching. "titanic" matched against the adjusted regex of /t[a-z]*?i/ returns ["ti"].
+//Fix the regex /<.*>/ to return the HTML tag <h1> and not the text "<h1>Winter is coming</h1>". Remember the wildcard . in a regular expression matches any character.
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<h.*?1>/; // Change this line
+let result = text.match(myRegex);
+
+//15. Regular Expressions: Match Beginning String Patterns
+//Outside of a character set, the caret(^) is used to search for patterns at the beginning of strings.
+let rickyAndCal = "Cal and Ricky both like racing.";
+let calRegex = /^Cal/ //Change this line
+let result = calRegex.test(rickyAndCal);
+
+//16. Regular Expressions: Match Ending String Patterns
+//You can search the end of strings using the dollar sign character $ at the end of the regex.
+let caboose = "The last car on a train is the caboose";
+let lastRegex = /caboose$/; // Change this line
+let result = lastRegex.test(caboose);
+
+//17. Regular Expressions: Match All Letters and Numbers
+// \w- This character class matches upper and lowercase letters plus numbers
+//These shortcut character classes are also known as shorthand character classes.
+//this character class also includes the underscore character (_).
+let quoteSample = "The five boxing wizards jump quickly.";
+let alphabetRegexV2 = /\w/g; // Change this line
+let result = quoteSample.match(alphabetRegexV2).length;
+
+//18. Regular Expressions: Match Everything But Letters and Numbers
+//You can search for the opposite of the \w with \W.
+let shortHand = /\W/;
+let numbers = "42%";
+let sentence = "Coding!";
+numbers.match(shortHand); // Returns ["%"]
+sentence.match(shortHand); // Returns ["!"]
+
+//19. Regular Expressions: Match All Numbers
+// The shortcut to look for digit characters is \d
+// Use the shorthand character class \d to count how many digits are in movie titles. Written out numbers ("six" instead of 6) do not count.
+let movieName = "2001: A Space Odyssey";
+let numRegex = /\d/g; // Change this line
+let result = movieName.match(numRegex).length;
+
+//20. Regular Expressions: Match All Non-Numbers
+// The shortcut to look for non-digit characters is \D
+let movieName = "2001: A Space Odyssey";
+let noNumRegex = /\D/g; // Change this line
+let result = movieName.match(noNumRegex).length;
+
+//21. Regular Expressions: Restrict Possible Usernames
+// 
