@@ -141,5 +141,82 @@ let movieName = "2001: A Space Odyssey";
 let noNumRegex = /\D/g; // Change this line
 let result = movieName.match(noNumRegex).length;
 
-//21. Regular Expressions: Restrict Possible Usernames
-// 
+//21. Regular Expressions: Match Whitespace
+// You can search for whitespace, carriage return, tab, form feed, and new line characters using \s
+let whiteSpace = "Whitespace. Whitespace everywhere!"
+let spaceRegex = /\s/g;
+whiteSpace.match(spaceRegex);
+// Returns [" ", " "]
+
+//22. Regular Expressions: Match Non-Whitespace Characters
+let whiteSpace = "Whitespace. Whitespace everywhere!"
+let nonSpaceRegex = /\S/g;
+whiteSpace.match(nonSpaceRegex).length; // Returns 32
+
+//23. Regular Expressions: Specify Upper and Lower Number of Matches
+//You can specify the lower and upper number of patterns with quantity specifiers. Quantity specifiers are used with curly brackets ({ and })
+let A4 = "aaaah";
+let A2 = "aah";
+let multipleA = /a{3,5}h/;
+multipleA.test(A4); // Returns true
+multipleA.test(A2); // Returns false
+
+//24. Regular Expressions: Specify Only the Lower Number of Matches
+//For example, to match only the string "hah" with the letter a appearing at least 3 times, your regex would be /ha{3,}h/.
+let haStr = "Hazzzzah";
+let haRegex = /haz{4,}ah/gi; // Change this line
+let result = haRegex.test(haStr);
+
+//25. Regular Expressions: Specify Exact Number of Matches
+//For example, to match only the word "hah" with the letter a 3 times, your regex would be /ha{3}h/
+let haStr = "Hazzzzah";
+let haRegex = /haz{4}ah/gi; // Change this line
+let result = haRegex.test(haStr);
+
+//26. Regular Expressions: Check for All or None
+//You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element. You can think of this symbol as saying the previous element is optional.
+let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/;
+rainbowRegex.test(american); // Returns true
+rainbowRegex.test(british); // Returns true
+
+//27. Regular Expressions: Positive and Negative Lookahead
+//Lookaheads are patterns that tell JavaScript to look-ahead in your string to check for patterns further along. This can be useful when you want to search for multiple patterns over the same string.
+//There are two kinds of lookaheads: positive lookahead and negative lookahead.
+//A positive lookahead will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
+//a negative lookahead will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the pattern that you do not want to be there.
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password); // Returns true
+
+//28. Regular Expressions: Check For Mixed Grouping of Characters
+// /Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr);
+// Returns truE
+
+//29. Regular Expressions: Reuse Patterns Using Capture Groups
+//ou can search for repeat substrings using capture groups. Parentheses, ( and ), are used to find repeat substrings.
+//To specify where that repeat string will appear, you use a backslash (\) and then a number. This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["regex regex", "regex"]
+
+//30. Regular Expressions: Use Capture Groups to Search and Replace
+//You can search and replace text in a string using .replace() on a string. The inputs for .replace() is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something.
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+// Returns "Camp Code"
+//Write a regex fixRegex using three capture groups that will search for each word in the string "one two three". Then update the replaceText variable to replace "one two three" with the string "three two one" and assign the result to the result variable. Make sure you are utilizing capture groups in the replacement string using the dollar sign ($) syntax.
+let str = "one two three";
+let fixRegex = /(\w+)\s(\w+)\s(\w+)/; // Change this line
+let replaceText = "$3 $2 $1"; // Change this line
+let result = str.replace(fixRegex, replaceText);
+
+
+
+
+
+
