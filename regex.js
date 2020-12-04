@@ -215,6 +215,100 @@ let fixRegex = /(\w+)\s(\w+)\s(\w+)/; // Change this line
 let replaceText = "$3 $2 $1"; // Change this line
 let result = str.replace(fixRegex, replaceText);
 
+//Basic Data Structures: Use an Array to Store a Collection of Data
+//one-dimensional array, meaning it only has one level, or that it does not have any other arrays nested within it
+//All arrays have a length property, which as shown above, can be very easily accessed with the syntax Array.length
+//multi-dimensional array, or an array that contains other arrays
+//arrays are also capable of storing complex objects
+let complexArray = [
+    [
+      {
+        one: 1,
+        two: 2
+      },
+      {
+        three: 3,
+        four: 4
+      }
+    ],
+    [
+      {
+        a: "a",
+        b: "b"
+      },
+      {
+        c: "c",
+        d: "d"
+      }
+    ]
+  ];
+
+  //Basic Data Structures: Access an Array's Contents Using Bracket Notation
+  //JavaScript arrays are zero-indexed, meaning that the first element of an array is actually at the zeroth position, not the first
+
+  //Basic Data Structures: Add Items to an Array with push() and unshift()
+  //An array's length, like the data types it can contain, is not fixed. Arrays can be defined with a length of any number of elements, and elements can be added or removed over time; in other words, arrays are mutable
+  function mixedNumbers(arr) {
+    // Only change code below this line
+  arr.unshift('I',2,'three');
+  arr.push(7,'VIII',9);
+    // Only change code above this line
+    return arr;
+  }
+  
+  console.log(mixedNumbers(['IV', 5, 'six']));
+
+  //Basic Data Structures: Remove Items from an Array with pop() and shift()
+
+  //Basic Data Structures: Remove Items Using splice()
+  //splice() allows us to do just that: remove any number of consecutive elements from anywhere in an array.
+  //can take up to 3 parameter
+  //splice()'s first parameter represents the index on the array from which to begin removing elements, while the second parameter indicates the number of elements to delete. For example:
+  let array = ['today', 'was', 'not', 'so', 'great'];
+
+array.splice(2, 2);
+// remove 2 elements beginning with the 3rd element
+// array now equals ['today', 'was', 'great']
+
+//splice() not only modifies the array it's being called on, but it also returns a new array containing the value of the removed elements:
+let array = ['I', 'am', 'feeling', 'really', 'happy'];
+
+let newArray = array.splice(3, 2);
+// newArray equals ['really', 'happy']
+
+//Basic Data Structures: Add Items Using splice()
+//you can use the third parameter, comprised of one or more element(s), to add to the array
+const numbers = [10, 11, 12, 12, 15];
+const startIndex = 3;
+const amountToDelete = 1;
+
+numbers.splice(startIndex, amountToDelete, 13, 14);
+// the second entry of 12 is removed, and we add 13 and 14 at the same index
+console.log(numbers);
+// returns [ 10, 11, 12, 13, 14, 15 ]
+
+//Basic Data Structures: Copy Array Items Using slice()
+//slice() copies or extracts a given number of elements to a new array, leaving the array it is called upon untouched
+//slice() takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to stop extraction (extraction will occur up to, but not including the element at this index). 
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+
+let todaysWeather = weatherConditions.slice(1, 3);
+// todaysWeather equals ['snow', 'sleet'];
+// weatherConditions still equals ['rain', 'snow', 'sleet', 'hail', 'clear']
+
+//Basic Data Structures: Copy an Array with the Spread Operator
+// ES6's new spread operator allows us to easily copy all of an array's elements, in order, with a simple and highly readable syntax. 
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];
+// thatArray equals [true, true, undefined, false, null]
+// thisArray remains unchanged and thatArray contains the same elements as thisArray
+
+//Basic Data Structures: Combine Arrays with the Spread Operator
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+// thatArray now equals ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander']
+
 
 
 
